@@ -90,7 +90,9 @@
 }
 
 .NotFound {
-  margin:auto;
+  display: grid;
+  align-content: center;
+  justify-items: center;
 }
 
 .NotFound img {

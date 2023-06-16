@@ -13,8 +13,8 @@ const ProductList = () => {
     const { pettype } = useParams();
     const { category } = useParams();
     const { search } = useParams();
-    //const [currentPage, setCurrentPage] = useState(1);
-    //const productsPerPage = 8;
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 8;
 
     const [filters, setFilters] = useState({
         productcategory: '|All Products',
@@ -356,6 +356,7 @@ const ProductList = () => {
             }
         
             handleFilterChange('', '');
+            setCurrentPage(1);
         }
     }, [filters.productcategory,filters.subcategory,filters.pettype]);
     
@@ -718,6 +719,14 @@ const ProductList = () => {
         setShowFilter(!showFilter);
     };
 
+    const getList = () => {
+        const l = (filtered ? filtered : results);
+        const sI = (currentPage-1)*productsPerPage;
+        const eI = (sI+productsPerPage<l.length)?(sI+productsPerPage):undefined;
+        console.log(sI,eI);
+        return l.slice(sI,eI);
+    };
+
     return (
         <div className='products-container'>
             <div className='productspage'>
@@ -940,7 +949,7 @@ const ProductList = () => {
                     <div className='products-card'>
                         <ul>
                             {	results ? ((
-                                (filtered ? filtered : results)
+                                getList()
                                 .map(product => (
                                 <li key={product.productid} className='cards'>
                                     <div className='productinfo-container'>
@@ -957,7 +966,11 @@ const ProductList = () => {
                             }
                         </ul>
                         <div className="pagination-buttons">
-                            
+        {Array.from({ length: Math.ceil((filtered ? filtered : results).length / productsPerPage) }, (_, i) => (
+          <button key={i + 1} onClick={() => setCurrentPage(i + 1)}>
+            {i + 1}
+          </button>
+        ))}
                         </div>
                     </div>
                 </div>

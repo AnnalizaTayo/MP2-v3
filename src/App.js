@@ -112,7 +112,7 @@ function App() {
             )}
             <Route path="/admin" element={<ProductManagement />} />
             {/* <Route path="/search" element={<Search />} /> */}
-            <Route path="/*" element={NotFound} />
+            <Route path="*" element={<NotFound/>} />
           </Routes>
           {showButton && (
             <button className="back-to-top-button" onClick={handleBackToTop}>
