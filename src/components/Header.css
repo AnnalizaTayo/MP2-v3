@@ -181,7 +181,8 @@ li {
     /* collapsible */
 
         .collapse {
-            position: absolute;background-color: #ffffff !important;
+            position: absolute;
+            background-color: #ffffff !important;
             color: #836953;
             left:0;
             margin: 0%;

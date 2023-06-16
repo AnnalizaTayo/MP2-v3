@@ -16,7 +16,7 @@ const HomePage = () => {
   useEffect(() => {
     // Check user subscription status
     const userString = localStorage.getItem('user');
-    console.log(userString);
+    //console.log(userString);
     if (userString) {
       const user = JSON.parse(userString);
       if (user.subscribed === false) {

@@ -32,13 +32,16 @@
 
 .filter-collapse {
     position: fixed;
-    padding: 5rem 2rem;
+    padding: 5rem;
+    top:0;
+    left:0;
     background-color: #836953;
     text-align: left;
     color: #FFFFFF;
-    z-index: 1;
+    z-index: 990;
     width: 20vw;
     border-radius: 10px;
+    height: 100vh;
 }
 
 .products-container aside li {
@@ -189,6 +192,49 @@
     width: 100%;
 }
 
+@media (min-width: 1600px) {
+    .products-container .products-card li.cards .productinfo-container {
+        height: 24rem;
+    }
+
+    .products-container .products-card ul {
+        display: grid;
+        grid-template-columns: repeat(6 , 1fr);
+    }
+
+    .cards button {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width:992px) {
+    .cards {
+        display: block;
+        width: 80%;
+    }
+
+    .cards button {
+        display: flex;
+        float: left;
+    }
+
+    @media (orientation:landscape) and (max-height:600px) {
+        
+        .filter-collapse {
+            position: fixed;
+            padding: 1rem 5rem;
+            width: 100vw;
+            border-radius: 0;
+            overflow: auto;
+            z-index: 990;
+        }
+        
+        .filterbuttons {
+            padding-bottom: 2rem;
+        }
+    }
+}
+
 @media (max-width:768px) {
     .products-container .productspage aside {
         position: fixed;
@@ -201,12 +247,13 @@
     }
 
     .filter-collapse {
-        position: absolute;
+        position: fixed;
         padding: 1rem 5rem;
         width: 100vw;
         height: 100vh;
         border-radius: 0;
         overflow: auto;
+        z-index: 990;
     }
 
     .filterbuttons {
@@ -225,6 +272,7 @@
         display: grid;
         grid-template-columns: repeat(2 , 1fr);
     }
+    
 }
 
 
@@ -247,4 +295,9 @@
     .products-container .products-card ul li.cards {
         margin: 0;
     }
+
+    .products-container .products-card li.cards .productinfo-container {
+        height: 16rem;
+    }
+
 }

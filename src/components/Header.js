@@ -34,8 +34,8 @@ const Header = () => {
         event.preventDefault();
         if (searchInput.trim() !== '') {
           const userInput = searchInput.trim();
+          setSearchInput('');
           navigate(`/products/search/${userInput}`);
-          console.log(userInput)
         }
     };
       

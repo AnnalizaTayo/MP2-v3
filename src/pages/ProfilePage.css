@@ -11,6 +11,10 @@
     color: #ffffff;
 }
 
+.profile-details {
+    margin-bottom: 1.5rem;
+}
+
 .profile-picture img {
     width: 10rem;
     height: 10rem;
@@ -178,10 +182,6 @@ section.petcare .tips {
     margin: 0;
     padding: 2rem 0;
     text-align: center;
-    }
-
-    .profile-details {
-        margin-bottom: 1.5rem;
     }
 
     .profile-picture img {

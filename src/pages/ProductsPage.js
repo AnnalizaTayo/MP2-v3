@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {BsFillCartFill , BsFillHeartFill} from 'react-icons/bs';
 import {FaFilter} from 'react-icons/fa';
 import './ProductsPage.css';
@@ -13,8 +13,8 @@ const ProductList = () => {
     const { pettype } = useParams();
     const { category } = useParams();
     const { search } = useParams();
-    const [currentPage, setCurrentPage] = useState(1);
-    const productsPerPage = 8;
+    //const [currentPage, setCurrentPage] = useState(1);
+    //const productsPerPage = 8;
 
     const [filters, setFilters] = useState({
         productcategory: '|All Products',
@@ -71,7 +71,7 @@ const ProductList = () => {
             setIsAllProductsFiltered(true);
         }
         handleFilterChange('productcategory', '');
-    }, [isAllProductsFiltered]);
+    }, [isAllProductsFiltered , isAccessoriesFiltered , isAquariumFiltered , isBeddingFiltered, isCareAndWellBeingFiltered ,  isCareAndWellBeingFiltered , isFoodAndNutritionFiltered , isFoodFiltered , isGroomingToolsFiltered , isLeashesAndCollarFiltered , isSupplementsFiltered , isToysAndEnrichmentFiltered , isToysFiltered , isTreatsFiltered]);
 
     useEffect(() => {
         if( isFoodAndNutritionFiltered || 
