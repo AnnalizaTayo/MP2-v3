@@ -1,0 +1,138 @@
+.overlay { 
+    position: fixed; 
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    background:rgba(0, 0, 0, 0.7); 
+    transition: opacity 500ms; 
+    visibility: hidden; 
+    opacity: 0; 
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+}
+
+.overlay:target { 
+    visibility: visible; opacity: 1;
+}
+
+#popup1 { 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #836953;
+}
+
+#popup1 .popup {
+    background: #fff;
+    border-radius: 10px;
+    width: 40%;
+    height: auto;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem;
+}
+
+#popup1 .popup h2 { 
+    margin-top: 0; 
+}
+
+#popup1 .popup .close {
+    position: absolute; 
+    top: 0px;  
+    right: 0px; 
+    transition: all 200ms; 
+    font-size: 30px;  
+    font-weight: normal; 
+    text-decoration: none;  
+    text-align: center;    
+    background: #F8C8dc;  
+    border-radius: 10px;  
+    cursor: pointer;  
+    float: right;  
+    padding: 0;  
+    color: #fff;  
+    margin-top: 0;  
+    margin-right: 0;  
+    height: 40px;  
+    width: 40px;    
+    line-height: 45px;
+    border: 1px solid #836953;
+}
+
+#popup1 .popup .close:hover {
+    color: #836953;
+}
+
+#popup1 .newletter-title h2 {   
+    font-size: 24px;  
+    text-transform: uppercase;  
+    color: #836953;  
+    font-weight: 700;  
+    letter-spacing: 3px;  
+    margin: 0 0 15px;
+}
+
+#popup1 .box-content label {  
+    font-weight: 400;  
+    max-width: 560px;  
+    display: inline-block;  
+    margin: 1rem;  
+    font-size: 1rem;
+}
+
+.newletter-popup {  
+    background: #fff;  
+    top: 50% !important;   
+    position: fixed !important; 
+    padding: 0;  
+    text-align: center;  
+    -moz-transform: translateY(-50%);    
+    -webkit-transform: translateY(-50%);  
+    -o-transform: translateY(-50%);   
+    -ms-transform: translateY(-50%);    
+    transform: translateY(-50%);
+}
+
+#popup1 #frm_subscribe #subscribe_pemail {    
+    background: #EBEBEB none repeat scroll 0% 0%;    
+    border: medium none;    
+    height: 3rem;    
+    width: 90%;    
+    margin: 1rem auto 1.25rem;
+    padding: 0 0.5rem;    
+}
+
+#popup1 .box-content .subscribe-bottom {   
+    margin-top: 1.5rem;
+}
+
+
+
+@media (max-width: 767px) {
+    #popup1 .popup {
+    background: #fff;
+    border-radius: 10px;
+    width: 70% !important;
+    height: auto;
+    padding: 2rem;
+}
+
+}
+
+@media (orientation: landscape) and (max-height: 578px) {
+    #popup1.overlay {
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    #popup1 .popup {
+        width: 60% !important;
+        margin: 2rem auto;
+    }
+    
+}

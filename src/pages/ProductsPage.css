@@ -1,0 +1,250 @@
+.productspage {
+    overflow-y: auto;
+}
+
+.products-container .productspage {
+    display: flex;
+}
+
+.products-container .productspage aside {
+    position: absolute;
+}
+
+.products-container .productspage aside .funnel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 4rem 0.5rem;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    z-index: 999;
+    border: 2px solid #836953;
+}
+
+.products-container .productspage aside .funnel:hover {
+    background-color: #FFFFFF;
+    color: #836953;
+    border-color: #F8C8DC;
+}
+
+.filter-collapse {
+    position: fixed;
+    padding: 5rem 2rem;
+    background-color: #836953;
+    text-align: left;
+    color: #FFFFFF;
+    z-index: 1;
+    width: 20vw;
+    border-radius: 10px;
+}
+
+.products-container aside li {
+   color: #FFFFFF;
+   border: none;
+   margin: 0;
+}
+
+.products-container input[type="checkbox"] {
+    /* Hide the default checkbox appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Set a custom size for the checkbox */
+    width: 1rem;
+    height: 1rem;
+    /* Set the checkbox color */
+    background-color: #ffffff;
+    /* Add a border */
+    border: 1px solid #F8C8DC;
+    /* Add a border-radius for rounded corners */
+    border-radius: 3px;
+    /* Add some padding */
+    padding: 2px;
+    /* Position the checkbox relative to the label */
+    vertical-align: middle;
+    position: relative;
+    /* Add a custom checkmark using a pseudo-element */
+}
+
+/* Customize the appearance of the checkbox when checked */
+.products-container input[type="checkbox"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+    background-color: #836953;
+    border-radius: 2px;
+}
+
+.products-container .right {
+    flex: 1;
+    padding: 2rem;
+}
+
+.products-container form {
+    margin: 0.5rem 1rem 1rem;
+}
+
+.products-container input[type="text"] {
+    width: 90%;
+    text-indent: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px 0 0 10px;
+}
+
+.products-container button.searchbutton {
+    color: #836953;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+    font-weight: bold;
+    border: 1px solid #836953;
+    padding: 0.5rem;
+    margin: 0;
+}
+
+
+.products-container button {
+    color: #836953;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 1px solid #836953;
+    padding: 0.5rem;
+    margin: 0.25rem;
+}
+
+.products-container button:hover {
+    background-color: #836953;
+    color: #FFFFFF;
+}
+
+.products-container .products-card ul {
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+}
+
+.products-container .products-card li.cards {
+    margin-right: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding: 1.25rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+.products-container .products-card li.cards .productinfo-container {
+    height: 17.5rem;
+}
+
+.products-container .products-card li.cards img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.products-container .products-card li h4 {
+    margin-bottom: 10px;
+}
+
+.products-container .products-card li p {
+    margin-bottom: 5px;
+}
+
+.products-container .products-card li button {
+    padding: 10px 20px;
+    color: #836953;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-right: 0.25rem;
+}
+
+.products-container .products-card li button:hover {
+    background-color: #836953;
+    color: #FFFFFF;
+}
+
+.products-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.products-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.pagination-buttons {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+@media (max-width:768px) {
+    .products-container .productspage aside {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .products-container .productspage aside .funnel:hover {
+        border-color: #F8C8DC;
+    }
+
+    .filter-collapse {
+        position: absolute;
+        padding: 1rem 5rem;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        overflow: auto;
+    }
+
+    .filterbuttons {
+        padding-bottom: 2rem;
+    }
+
+    .products-container .productspage aside .funnel {
+        margin: 3.5rem 0.5rem;
+    }
+
+    .hide.searchbar-products {
+        display: flex;
+    }
+
+    .products-container .products-card ul {
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+    }
+}
+
+
+@media (max-width:568px) {
+    .products-container .productspage aside .funnel {
+        margin: 7rem 0.5rem;
+    }
+
+    .productspage div.right {
+        padding: 0;
+        margin: 1rem auto;
+    }
+
+    .products-container .products-card ul {
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+        gap: 1rem;
+    }
+
+    .products-container .products-card ul li.cards {
+        margin: 0;
+    }
+}

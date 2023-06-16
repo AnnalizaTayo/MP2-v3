@@ -1,0 +1,227 @@
+.profilePage {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.profilePage aside {
+    margin:0;
+    padding: 2rem;
+    text-align: center;
+    background-color: #836953;
+    color: #ffffff;
+}
+
+.profile-picture img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    margin: 0.25rem auto;
+}
+
+.profile-details {
+    margin-top: 1rem;
+}
+
+.profileButtons {
+    margin: 1rem auto;
+    width: 100%;
+    text-align: center;
+}
+
+button.edit-button.button,
+button.logout-button.button,
+.transaction-button.button {
+    width: 90%;
+    margin: 0.5rem auto;
+}
+
+button.edit-button.button:hover,
+button.logout-button.button:hover,
+.transaction-button.button:hover {
+    background-color: #ffffff;
+    color: #836953;
+    cursor: pointer;
+}
+
+/* update profile */
+
+.editProfileform-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    border-radius: 10px;
+    width: 25rem;
+    color: #836953;
+}
+
+.editForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.editinput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.editinput label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.editinput input {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.cancel-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: normal;
+    text-decoration: none;
+    text-align: center;
+    background: #f8c8dc;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+    padding: 0;
+    color: #fff;
+    margin-top: 0;
+    margin-right: 0;
+    height: 40px;
+    width: 40px;
+    line-height: 45px;
+    border: 1px solid #836953;
+}
+
+.cancel-button:hover {
+    background-color: #c0392b;
+}
+
+.update-button {
+    cursor: pointer;
+}
+
+/* Pet Care Tips */
+section.petcare {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+    height: 90vh;
+    padding: 3rem;
+}
+
+section.petcare::-webkit-scrollbar {
+    display: none; /* WebKit-based browsers */
+}
+
+section.petcare .tips {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.care-tips {
+    width: 80%;
+    padding: 1rem;
+    border: 1px solid #f8c8dc;
+    border-radius: 10px;
+    margin: 0.5rem;
+}
+
+.care-tips h2 {
+    margin-bottom: 1rem;
+}
+
+.blog-image {
+    width: 100%;
+}
+
+.blog-content p {
+    font-size: 1.25rem;
+    margin: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .profileButtons {
+        margin: 1rem auto;
+        width: 80%;
+        text-align: center;
+    }
+    
+    .profilePage {
+        grid-template-columns: 1fr;
+    }
+
+    .profilePage aside {
+    margin: 0;
+    padding: 2rem 0;
+    text-align: center;
+    }
+
+    .profile-details {
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-picture img {
+    width: 8rem;
+    height: 8rem;
+    }
+
+    .editProfileform-container {
+    width: 20rem;
+    }
+
+    section.petcare {
+    padding: 2rem;
+    }
+
+    section.petcare {
+        overflow-y: visible;
+        height: auto;
+        padding: 3rem;
+    }
+    
+    
+    section.petcare .tips {
+        margin: auto;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    
+
+    .editProfileform-container {
+    width: 18rem;
+    }
+
+    section.petcare {
+    padding: 1rem;
+    }
+}

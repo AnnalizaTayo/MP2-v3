@@ -1,0 +1,306 @@
+.vet-consultation-page {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  color: #836953;
+}
+
+.vet-consultation-page aside {
+  color: #ffffff;
+  background-color: #836953;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.pet-profile {
+  text-align: center;
+  margin: 0.25rem;
+}
+
+.pet-profile img {
+  width: 10rem;
+  height: 10rem;
+  margin: 1rem auto;
+  display: flex;
+  border-radius: 50%;
+}
+
+.appointmentList-container {
+  padding: 0.25rem;
+  border-radius: 5px;
+  border: 1px solid white;
+  margin: 1rem auto;
+  width: 95%;
+  height: 10rem;
+  overflow: auto;
+}
+
+.consultationListHead {
+  display: grid;
+  grid-template-columns: repeat(3, 2fr) 1fr;
+  background-color: #f8c8dc;
+  color: #836953;
+}
+
+li.consultationList,
+li.consultationLogList {
+  color: #836953;
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr) 1fr;
+  align-items: center;
+}
+
+.appointmentList li:nth-child(2) {
+  background-color: #f0eeee;
+}
+
+.appointmentList-container li.consultationList span {
+  overflow: hidden;
+}
+
+.consultationList .cancelAppointment {
+  color: #f8c8dc;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+}
+
+.consultationList .cancelAppointment:hover {
+  color: #dc3545;
+}
+
+.pet-information ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.loglist {
+  margin: 1rem 0;
+}
+
+.pet-information span {
+  flex: 1;
+}
+
+.pet-information span:last-child {
+  flex: none;
+  padding-left: 10px;
+}
+
+.pet-information button {
+  color: #f8c8dc;
+  transition: color 0.3s ease;
+  margin-left: auto;
+}
+
+
+/* Scheduler */
+.consultation-scheduler {
+  flex: 1;
+  padding: 2rem;
+}
+
+.webcon {
+  display: grid;
+  grid-template-columns: 1fr 15fr;
+  margin: 1rem auto;
+  font-size: 1.1rem;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 1.5rem;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #836953;
+  z-index: 999;
+}
+
+.deatils-container {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #f8c8dc;
+}
+
+.consultation-scheduler h3 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.consultation-scheduler form {
+  padding: 1rem;
+}
+
+.form-group {
+  margin: 1rem auto;
+}
+
+.rdp-months {
+  margin: auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.rdp-button_reset.rdp-button.rdp-day.rdp-day_selected {
+  background-color: #f8c8dc;
+  color: #FFFFFF;
+}
+
+button.rdp-button_reset.rdp-button.rdp-day.rdp-day:hover {
+  background-color: #f8edf2;
+}
+
+button.rdp-button_reset.rdp-button.rdp-day.rdp-day_today {
+  border-color: #f8c8dc;
+}
+
+#consultationTime {
+  color: #836953;
+}
+
+textarea#concern {
+width: 100%;
+  color: #836953;
+}
+
+
+
+/* ChatBot Styling */
+.chatbot-container {
+  display: flex;
+  align-items: center;
+}
+
+.chatbot {
+  width: 80%;
+  height: 90%;
+  margin: auto;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Add this line */
+  justify-content: space-between; /* Add this line */
+  text-align: right;
+  border: 1px solid #836953;
+}
+
+.chatbot:nth-child(2) {
+  text-align: left;
+}
+
+.chatbot__messages {
+  margin-bottom: 20px;
+  flex: 1; /* Add this line */
+  overflow-y: auto; /* Add this line */
+  scrollbar-width: thin; /* Add this line for Firefox */
+  scrollbar-color: transparent transparent; /* Add this line for Firefox */
+}
+
+.chatbot__messages::-webkit-scrollbar {
+  width: 6px; /* Adjust the width as needed */
+}
+
+.chatbot__messages::-webkit-scrollbar-track {
+  background: transparent; /* Change the background color as needed */
+}
+
+.chatbot__messages::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Change the thumb color as needed */
+}
+
+.chatbot__messages::-webkit-scrollbar-thumb:hover {
+  background-color: transparent;
+}
+
+.message {
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.message.message--user {
+  background-color: #b8dff0;
+  color: #000;
+  align-self: flex-end; 
+}
+
+.message.message--bot {
+  background-color: #e0e0e0;
+  color: #555;
+  align-self: flex-start;
+}
+
+.chatbot__input {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; 
+}
+
+.chatbot__input input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.chatbot__input button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #836953;
+}
+
+
+/* Responsive styles */
+
+@media (max-width: 768px) {
+  .vet-consultation-page {
+    grid-template-columns: 1fr;
+  }
+
+  .popup {
+    width: 80%;
+  }
+
+  .chatbot-container {
+    margin-bottom: 3rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .consultation-scheduler {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .vet-consultation-page {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .appointmentList-container {
+  height: 8rem;
+  }
+
+  .consultation-scheduler h3 {
+  font-size: 20px;
+  }
+}

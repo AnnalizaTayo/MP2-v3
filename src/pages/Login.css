@@ -1,0 +1,88 @@
+.login-form {
+  max-width: 300px;
+  margin: 8.5rem auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.login-form header {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.login-form .field {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.login-form .input,
+.login-form .password {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.login-form .eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.login-form .form-link {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.login-form .forgot-pass {
+  color: #999;
+  text-decoration: none;
+}
+
+.login-form .button-field {
+  text-align: center;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  background-color: #836953;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #f8c8dc;
+  color: #836953;
+}
+
+.login-form button:active {
+  background-color: white;
+}
+
+.login-form .link {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.error-message {
+  color: #DC3545;
+  padding: 0 0 1.5rem 0;
+}
+
+.success-message {
+  color: #4caf50;
+  padding: 0 0 1.5rem 0;
+}

@@ -1,0 +1,71 @@
+/* CSS file */
+.checkoutform {
+    position: absolute;
+    top: 0;
+    left:0;
+    border-radius: 10px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F8C8DC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #836953;
+}
+
+.checkout-container {
+    margin: auto;
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.checkout-container input , .checkout-container fieldset {
+    border: 1px solid #836953;
+    border-radius: 5px;
+}
+
+.checkout-container > form {
+    margin: 1rem auto;
+}
+
+.checkout-container input {
+    padding: 0.25rem;
+}
+
+.checkout-container button {
+    color: #836953;
+    border: 1p solid #836953;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+.checkout-container button:hover {
+    background-color: #836953;
+    color: #FFFFFF;
+}
+
+#country , #address , #appartment {
+    width: 90%;
+    height: 13px;
+    padding: 10px;
+    border-radius: 4px;
+    flex-wrap: wrap;
+    display: inline-flex;
+    margin: 8px;
+    border: 1px solid #836953;
+}
+
+#number , #email , #cardholderName , #cardNumber , #expiryDate , #expiryDate , #cvv {
+    width: 35%;
+    height: 13px;
+    padding: 10px;
+    border-radius: 4px;
+    flex-wrap: wrap;
+    display: inline-flex;
+    margin: 8px;
+    border: 1px solid #836953;
+}

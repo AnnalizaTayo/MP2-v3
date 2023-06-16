@@ -1,0 +1,26 @@
+button {
+  background-color: #f8c8dc;
+  color: #836953;
+}
+
+.button {
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #836953;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: #ffffff;
+  background-color: #836953;
+}
+
+input:disabled:hover {
+  background-color: gray;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.subscription-success, .email-warning {
+  margin: 1rem;
+}

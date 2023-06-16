@@ -1,0 +1,62 @@
+.transactionLog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: auto;
+    background-color: #FFFFFF;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    border-radius: 10px;
+    color: #836953;
+}
+
+ul.productListsT li p {
+    padding: 1rem;
+}
+
+.transactionLog h1 {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+ul.productListsT , ul.productListsT li ,  ul.productListsT li ul{
+    padding: 0;
+}
+
+.columnLabelT , ul.productListsT li{
+    display: grid;
+    grid-template-columns: 1fr 5fr repeat(2 , 1fr);
+    text-align: center;
+    margin: auto;
+    align-items: center;
+    border: 1px solid #F8C8DC;
+}
+
+ul.productListsT li p {
+    text-align: center;
+}
+
+.columnLabelT {
+    background-color: #F8C8DC;
+    border-radius: 5px 5px 0 0;
+}
+
+.productinfoT {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+div.productinfoT img {
+    padding: 0.5rem;
+    border-radius: 15px;
+}
+
+.transactionLog button {
+    margin-top: 1rem;
+    width: 5rem;
+}
