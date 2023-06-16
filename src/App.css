@@ -88,3 +88,11 @@
     display: hidden;
   }
 }
+
+.NotFound {
+  margin:auto;
+}
+
+.NotFound img {
+  width: 80%;
+}

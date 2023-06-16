@@ -17,6 +17,7 @@ import WishListPage from './pages/WishListPage';
 import Logout from './pages/signout';
 import CartPage from './pages/CartPage';
 import ProductManagement from './adminPages/ProductManagement';
+import NotFound from './components/404';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -111,6 +112,7 @@ function App() {
             )}
             <Route path="/admin" element={<ProductManagement />} />
             {/* <Route path="/search" element={<Search />} /> */}
+            <Route component={NotFound} />
           </Routes>
           {showButton && (
             <button className="back-to-top-button" onClick={handleBackToTop}>
