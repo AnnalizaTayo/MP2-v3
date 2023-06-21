@@ -326,7 +326,7 @@ const WishListPage = () => {
                                             <div className='productVariant'>{product ? product.variant : 'Unknown'}</div>
                                         </div>
 
-                                        <div className='unitPrice'>{product ? `$${product.price}` : 'Unknown'}</div>
+                                        <div className='unitPrice'>&#8369;{product ? `${product.price}` : 'Unknown'}</div>
                                         <div>
                                             <button className='quantityButton' onClick={() => decrementQuantity(item.id)}>-</button>
                                             <input
@@ -339,7 +339,7 @@ const WishListPage = () => {
                                             <button className='quantityButton' onClick={() => incrementQuantity(item.id)}>+</button>
                                         </div>
                                         <div className='totalprice'>
-                                            {product ? `$${(parseFloat(product.price) * item.qty).toFixed(2)}` : 'Unknown'}
+                                            &#8369;{product ? `${(parseFloat(product.price) * item.qty).toFixed(2)}` : 'Unknown'}
                                         </div>
                                         <div>
                                             <BsTrashFill onClick={() => handleDeleteSelectedItem(item.id)} />
@@ -361,7 +361,7 @@ const WishListPage = () => {
                             </div>
                             <div  className='totalItems'>
                                 <h4>Total({selectedItems.length} item{selectedItems.length === 1 ? '' : 's'}):</h4>
-                                <h4>${getTotalAmount()}</h4>
+                                <h4>&#8369;{getTotalAmount()}</h4>
                                 <div className='checkout'>
                                     <Checkout handleCheckout={handleCheckout}/>
                                 </div>

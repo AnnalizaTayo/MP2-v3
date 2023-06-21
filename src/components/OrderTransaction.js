@@ -4,7 +4,7 @@ import PawIcon from '../components/PawIcon';
 import './OrderTransaction.css';
 
 const OrderTransaction = () => {
-  const [transactionItems, setTransactionItems] = useState([]);
+  //const [transactionItems, setTransactionItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -21,23 +21,33 @@ const OrderTransaction = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersResponse = await fetch('https://6475abd1e607ba4797dc4d7a.mockapi.io/api/v1/users');
-        const usersData = await usersResponse.json();
-        const { transaction } = usersData[0]; // Assuming the user is at index 0
-        setTransactions(transaction);
-
+        const userString = localStorage.getItem('user');
+        if (userString) {
+          const user = JSON.parse(userString);
+  
+          const usersResponse = await fetch('https://6475abd1e607ba4797dc4d7a.mockapi.io/api/v1/users');
+          const usersData = await usersResponse.json();
+  
+          const userTransaction = usersData.find((userData) => userData.id === user.id);
+          if (userTransaction) {
+            setTransactions(userTransaction.transaction);
+          }
+        }
+  
         const productsResponse = await fetch('https://6475abd1e607ba4797dc4d7a.mockapi.io/api/v1/products');
         const productsData = await productsResponse.json();
         setProducts(productsData);
-
+  
         setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
-
+  
     fetchData();
   }, []);
+  
+  
 
   if (loading) {
     return <PawIcon />;
