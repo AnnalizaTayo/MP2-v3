@@ -29,53 +29,57 @@ const CareTipsComponent = () => {
     };
 
     return (
-    <div className='tips'>
-        <div className="care-tips">
-        <h2>Pet Care Tips of the Day</h2>
-        <div className="blog-post">
-            <img className="blog-image" src={`https://loremflickr.com/640/480/${user.petType}`} alt={user.petName} />
-            <div className="blog-content">
-            <p>{getRandomTip()}</p>
+        <>
+            {user.petType ?
+            <div className='tips'>
+                <div className="care-tips">
+                <h2>Pet Care Tips of the Day</h2>
+                <div className="blog-post">
+                    <img className="blog-image" src={`https://loremflickr.com/640/480/${user.petType}`} alt={user.petName} />
+                    <div className="blog-content">
+                    <p>{getRandomTip()}</p>
+                    </div>
+                </div>
+                </div>
+                <div className="care-tips">
+                <h2>Pet Care Tips of the Day</h2>
+                <div className="blog-post">
+                    <img className="blog-image" src={`https://loremflickr.com/600/400/${user.petType}`} alt={user.petName} />
+                    <div className="blog-content">
+                    <p>{getRandomTip()}</p>
+                    </div>
+                </div>
+                </div>
+                <div className="care-tips">
+                <h2>Pet Care Tips of the Day</h2>
+                <div className="blog-post">
+                    <img className="blog-image" src={`https://loremflickr.com/550/450/${user.petType}`} alt={user.petName} />
+                    <div className="blog-content">
+                    <p>{getRandomTip()}</p>
+                    </div>
+                </div>
+                </div>
+                <div className="care-tips">
+                <h2>Pet Care Tips of the Day</h2>
+                <div className="blog-post">
+                    <img className="blog-image" src={`https://loremflickr.com/500/400/${user.petType}`} alt={user.petName} />
+                    <div className="blog-content">
+                    <p>{getRandomTip()}</p>
+                    </div>
+                </div>
+                </div>
+                <div className="care-tips">
+                <h2>Pet Care Tips of the Day</h2>
+                <div className="blog-post">
+                    <img className="blog-image" src={`https://loremflickr.com/620/460/${user.petType}`} alt={user.petName} />
+                    <div className="blog-content">
+                    <p>{getRandomTip()}</p>
+                    </div>
+                </div>
+                </div>
             </div>
-        </div>
-        </div>
-        <div className="care-tips">
-        <h2>Pet Care Tips of the Day</h2>
-        <div className="blog-post">
-            <img className="blog-image" src={`https://loremflickr.com/600/400/${user.petType}`} alt={user.petName} />
-            <div className="blog-content">
-            <p>{getRandomTip()}</p>
-            </div>
-        </div>
-        </div>
-        <div className="care-tips">
-        <h2>Pet Care Tips of the Day</h2>
-        <div className="blog-post">
-            <img className="blog-image" src={`https://loremflickr.com/550/450/${user.petType}`} alt={user.petName} />
-            <div className="blog-content">
-            <p>{getRandomTip()}</p>
-            </div>
-        </div>
-        </div>
-        <div className="care-tips">
-        <h2>Pet Care Tips of the Day</h2>
-        <div className="blog-post">
-            <img className="blog-image" src={`https://loremflickr.com/500/400/${user.petType}`} alt={user.petName} />
-            <div className="blog-content">
-            <p>{getRandomTip()}</p>
-            </div>
-        </div>
-        </div>
-        <div className="care-tips">
-        <h2>Pet Care Tips of the Day</h2>
-        <div className="blog-post">
-            <img className="blog-image" src={`https://loremflickr.com/620/460/${user.petType}`} alt={user.petName} />
-            <div className="blog-content">
-            <p>{getRandomTip()}</p>
-            </div>
-        </div>
-        </div>
-    </div>
+            : ''}
+        </>
     );
 };
     

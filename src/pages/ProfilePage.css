@@ -49,6 +49,13 @@ button.logout-button.button:hover,
 }
 
 /* update profile */
+.editProfileform-container .warning-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #ff3333;
+    border-radius: 4px;
+}
+  
 
 .editProfileform-container {
     position: fixed;
@@ -69,7 +76,6 @@ button.logout-button.button:hover,
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 0.1rem;
     max-width: 500px;
     margin: 0 auto;
     text-align: left;
@@ -84,7 +90,7 @@ button.logout-button.button:hover,
 
 .editinput label {
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.1rem;
 }
 
 .editinput input {

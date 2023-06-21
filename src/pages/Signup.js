@@ -4,6 +4,10 @@ import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import './Signup.css';
 
 const SignUpPage = () => {
+  const [isSignup , setSignup] = useState(false);
+
+
+
   useEffect(() => {
     // Check if user data exists in localStorage
     const userString = localStorage.getItem('user');
@@ -102,12 +106,12 @@ const SignUpPage = () => {
         // Remove the confirmPassword field
         delete trimmedFormData.confirmPassword;
   
-        const petPictureUrl = `https://loremflickr.com/640/480/${trimmedFormData.petType}`;
+        const petPictureUrl = 'https://scontent.fmnl4-4.fna.fbcdn.net/v/t39.30808-6/353831107_2959207134212731_742275240005757005_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=rHyHcKBTcocAX9Rkdt3&_nc_ht=scontent.fmnl4-4.fna&oh=00_AfCpOMtvaLKpl8wTS47gOV2BktA0eBQ5uPa1KpXdtGY2zQ&oe=6497356B';
   
         const newUser = {
           ...trimmedFormData,
           profilePicture:
-            'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/193.jpg',
+            'https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/352554740_2959207507546027_6149777498805105775_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_ohc=EN8-2KI-wygAX_5ZlCd&_nc_ht=scontent.fmnl4-1.fna&oh=00_AfDGDk0bvBEYuuk5j8IQYyBtU45iCxAjleqO1dzKSgUmFg&oe=64977377',
           petPicture: petPictureUrl,
           id: (data.length + 1).toString(),
         };
@@ -132,12 +136,14 @@ const SignUpPage = () => {
           petType: '',
         });
         setErrorMessage('');
-  
+        setSignup(true);
+        setTimeout(() => {
+          setSignup(false);
+        }, 3000);
         // Wait for the form data to be cleared before redirecting
         setTimeout(() => {
-          alert('Thank you for signing up! Please log in to your account.');
           window.location.href = '/login';
-        }, 0);
+        }, 3000);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -264,6 +270,18 @@ const SignUpPage = () => {
           </span>
         </div>
       </div>
+      {isSignup ? (
+        <div className='alertPopup'>
+            <div className='popUpAlert'>
+                <div className='popUp-container'>
+                    <div className='notLogged'>
+                        <p>Meow! Thank you for signing up. Nyang!</p>
+                        <img src='https://media.tenor.com/otQWdoWmvvsAAAAi/ok-dance.gif' alt='Successful Signup'/>
+                    </div>
+                </div>
+            </div>
+        </div>
+      ) : ''}
     </div>
   );
 };

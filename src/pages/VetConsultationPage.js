@@ -3,17 +3,20 @@ import { DayPicker } from 'react-day-picker';
 import {BsTrashFill , BsFillCameraVideoFill} from 'react-icons/bs'
 import 'react-day-picker/dist/style.css';
 import "./VetConsultationPage.css";
-//import "./Consultation.css";
 import Chatbot from "../components/ChatBot";
+import NotLogged from "../components/NotLoggedIn";
 
 const VetConsultationPage = () => {
   const userString = localStorage.getItem("user");
   const [user, setUser] = useState(null);
+  const [isLoggedIn , setIsLoggedIn] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [consultationDate, setConsultationDate] = useState(null);
   const [consultationTime, setConsultationTime] = useState("");
   const [concern, setConcern] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setsuccessMessage] = useState("");
+  const [cancelMessage, setcancelMessage] = useState("");
   const [availableTimes, setAvailableTimes] = useState([]);
   const [consultationLog, setConsultationLog] = useState([]);
   const [consultationSchedule, setConsultationSchedule] = useState([]);
@@ -27,9 +30,9 @@ const VetConsultationPage = () => {
   useEffect(() => {
     if (userString) {
       setUser(JSON.parse(userString));
+      setIsLoggedIn(true);
     } else {
-      alert("You are not logged in. Please login to your account.");
-      window.location.href = "/login";
+      setIsLoggedIn(false);
     }
   }, [userString]);
 
@@ -88,6 +91,12 @@ const VetConsultationPage = () => {
         consultationTime <= now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))
     ) {
       setErrorMessage("Please select a future date and time.");
+      return;
+    }
+
+    // Check if the concern is provided
+    if (concern.trim() === "") {
+      setErrorMessage("Please enter your pet's health concern.");
       return;
     }
 
@@ -151,8 +160,10 @@ const VetConsultationPage = () => {
       .then(response => response.json())
       .then(data => {
         // Display a success message or redirect to a confirmation page
-        alert("Consultation scheduled successfully!");
-
+        setsuccessMessage("Consultation scheduled Successfully!");
+        setTimeout(() => {
+          setsuccessMessage(false);
+      }, 2400);
         setConsultationLog(data.vetconsultationlog);
         setConsultationSchedule(data.vetconsultationschedule);
 
@@ -164,7 +175,7 @@ const VetConsultationPage = () => {
       })
       .catch(error => {
         console.error("Error scheduling consultation:", error);
-        alert("An error occurred while scheduling the consultation. Please try again later.");
+        console.log("An error occurred while scheduling the consultation. Please try again later.");
       });
   };
 
@@ -212,142 +223,151 @@ const VetConsultationPage = () => {
     })
       .then(response => response.json())
       .then(data => {
-        alert("Appointment canceled successfully!");
+        setcancelMessage("Appointment cancelled successfully.");
       })
       .catch(error => {
         console.error("Error canceling appointment:", error);
-        alert("An error occurred while canceling the appointment. Please try again later.");
+        console.log("An error occurred while canceling the appointment. Please try again later.");
       });
+      setTimeout(() => {
+        setcancelMessage('');
+      }, 2000)
   };
   
 
   return (
-    <div className="vet-consultation-page">
-      {/* Display the pet information */}
-      <aside className="pet-information">
-        <div className="pet-profile">
-          <img src={user?.petPicture} alt="Pet" />
-          <h2>{user?.petName}</h2>
-          <p>Type: {user?.petType}</p>
-        </div>
-        <div className="appointment-schedule">
-          <h2>Upcoming Appointments</h2>
-          {consultationSchedule.length === 0 ? (
-            <p>No upcoming appointments</p>
-          ) : (
-            <div className="appointmentList-container">
-              <ul className="appointmentList">
-                <li className="consultationListHead">
-                  <span>Date</span>
-                  <span>Time</span>
-                  <span>Concern</span>
-                  <span>Cancel</span>
-                </li>
-                {consultationSchedule.map((appointment) => (
-                  <li className="consultationList" key={appointment.referenceNumber}>
-                    <span>{`${new Date(appointment.date).toLocaleDateString()}`}</span>
-                    <span>{`${appointment.time}`}</span>
-                    <span>{`${appointment.concern}`}</span>
-                    <button className="cancelAppointment" onClick={() => handleCancelAppointment(appointment.referenceNumber)}>
-                      <BsTrashFill/>
-                    </button>
+    <>
+      {!isLoggedIn ? <NotLogged/> : 
+      <div className="vet-consultation-page">
+        {/* Display the pet information */}
+        <aside className="pet-information">
+          <div className="pet-profile">
+            <img src={user?.petPicture} alt="Pet" />
+            <h2>{user?.petName}</h2>
+            <p>Type: {user?.petType}</p>
+          </div>
+          <div className="appointment-schedule">
+            <h2>Upcoming Appointments</h2>
+            {consultationSchedule.length === 0 ? (
+              <p>No upcoming appointments</p>
+            ) : (
+              <div className="appointmentList-container">
+                <ul className="appointmentList">
+                  <li className="consultationListHead">
+                    <span>Date</span>
+                    <span>Time</span>
+                    <span>Concern</span>
+                    <span>Cancel</span>
                   </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-        <div className="consultation-log loglist">
-          <h2>Consultation Logs</h2>
-          {consultationLog.length === 0 ? (
-            <p>No consultation log entries</p>
-          ) : (
-            <div className="appointmentList-container">
-              <ul className="appointmentList">
-                <li className="consultationListHead">
-                  <span>Log Date</span>
-                  <span>Appt. Date</span>
-                  <span>Appt. Time</span>
-                  <span>Type</span>
-                </li>
-                {consultationLog.map((log) => (
-                  <li className="consultationLogList" key={log.referenceNumber}>
-                    <span>{`${new Date(log.logDate).toLocaleString()}`}</span>
-                    <span>{`${new Date(log.appointmentDate).toLocaleDateString()}`}</span>
-                    <span>{`${log.appointmentTime}`}</span>
-                    <span>{`${log.logType}`}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </aside>
-
-      {/* Display the consultation scheduler */}
-      <div className="consultation-scheduler">
-        <h3>Schedule an Online Vet Consultation</h3>
-        <div className="webcon">
-          <BsFillCameraVideoFill/>
-          <p>Web conferencing details will be provided upon confirmation.</p>
-        </div>
-        <div>
-          <button className="button" onClick={togglePopup}>Show Details</button>
-          {showPopup && (
-            <div className="popup">
-              <div className="deatils-container">
-                <p>Upon confirmation, you will receive the necessary information for the web conferencing session.<br/><br/></p>
-                <p>Get a teleconsultation or book a clinic visit with our licensed veterinarians!<br/><br/></p>
-                <p>FOR ONLY 500 PHP get an Online Vet Consultation. GET YOUR SECOND CONSULTATION FOR FREE if you book today!<br/><br/></p>
-                <p>Once booking is confirmed, we will confirm with you via email so we can match you with a vet!<br/><br/></p>
-                <p>*By booking a consultation, you agree to our Terms and Conditions and Privacy Policy.<br/></p>
+                  {consultationSchedule.map((appointment) => (
+                    <li className="consultationList" key={appointment.referenceNumber}>
+                      <span>{`${new Date(appointment.date).toLocaleDateString()}`}</span>
+                      <span>{`${appointment.time}`}</span>
+                      <span>{`${appointment.concern}`}</span>
+                      <button className="cancelAppointment" onClick={() => handleCancelAppointment(appointment.referenceNumber)}>
+                        <BsTrashFill/>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <button className="button" onClick={togglePopup}>Close</button>
-            </div>
-          )}
-        </div>
-        <form onSubmit={handleScheduleConsultation}>
-          <div className="form-group">
-            <label htmlFor="consultationDate"><h4>Consultation Date:</h4></label>
-            <DayPicker selected={consultationDate} onDayClick={handleDayClick} />
+            )}
           </div>
-          <div className="form-group">
-            <label htmlFor="consultationTime">Consultation Time:</label>
-            <select
-              id="consultationTime"
-              value={consultationTime}
-              onChange={handleTimeChange}
-              disabled={!consultationDate}
-            >
-              <option value="">Select a time</option>
-              {availableTimes.map((time) => (
-                <option key={time} value={time}>
-                  {time}
-                </option>
-              ))}
-            </select>
+          {cancelMessage && <div className="cancel-message">{cancelMessage}</div>}
+          <div className="consultation-log loglist">
+            <h2>Consultation Logs</h2>
+            {consultationLog.length === 0 ? (
+              <p>No consultation log entries</p>
+            ) : (
+              <div className="appointmentList-container">
+                <ul className="appointmentList">
+                  <li className="consultationListHead">
+                    <span>Log Date</span>
+                    <span>Appt. Date</span>
+                    <span>Appt. Time</span>
+                    <span>Type</span>
+                  </li>
+                  {consultationLog.map((log) => (
+                    <li className="consultationLogList" key={log.referenceNumber}>
+                      <span>{`${new Date(log.logDate).toLocaleString()}`}</span>
+                      <span>{`${new Date(log.appointmentDate).toLocaleDateString()}`}</span>
+                      <span>{`${log.appointmentTime}`}</span>
+                      <span>{`${log.logType}`}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-          <div className="form-group">
-            <label htmlFor="concern">Concern:</label>
-            <textarea
-              id="concern"
-              value={concern}
-              onChange={handleConcernChange}
-              placeholder="Enter your pet's health concern"
-              disabled={!consultationDate || !consultationTime}
-            ></textarea>
-          </div>
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
-          <button type="submit" className="sched button" disabled={!consultationDate || !consultationTime}>
-            Schedule Consultation
-          </button>
-        </form>
-        
-      </div>
+        </aside>
 
-      {/* Display the poweecha bot */}
-      <Chatbot/>
-    </div>
+        {/* Display the consultation scheduler */}
+        <div className="consultation-scheduler">
+          <h3>Schedule an Online Vet Consultation</h3>
+          <div className="webcon">
+            <BsFillCameraVideoFill/>
+            <p>Web conferencing details will be provided upon confirmation.</p>
+          </div>
+          <div>
+            <button className="button" onClick={togglePopup}>Show Details</button>
+            {showPopup && (
+              <div className="popup">
+                <div className="deatils-container">
+                  <p>Upon confirmation, you will receive the necessary information for the web conferencing session.<br/><br/></p>
+                  <p>Get a teleconsultation or book a clinic visit with our licensed veterinarians!<br/><br/></p>
+                  <p>FOR ONLY 500 PHP get an Online Vet Consultation. GET YOUR SECOND CONSULTATION FOR FREE if you book today!<br/><br/></p>
+                  <p>Once booking is confirmed, we will confirm with you via email so we can match you with a vet!<br/><br/></p>
+                  <p>*By booking a consultation, you agree to our Terms and Conditions and Privacy Policy.<br/></p>
+                </div>
+                <button className="button" onClick={togglePopup}>Close</button>
+              </div>
+            )}
+          </div>
+          <form onSubmit={handleScheduleConsultation}>
+            <div className="form-group">
+              <label htmlFor="consultationDate"><h4>Consultation Date:</h4></label>
+              <DayPicker selected={consultationDate} onDayClick={handleDayClick} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="consultationTime">Consultation Time:</label>
+              <select
+                id="consultationTime"
+                value={consultationTime}
+                onChange={handleTimeChange}
+                disabled={!consultationDate}
+              >
+                <option value="">Select a time</option>
+                {availableTimes.map((time) => (
+                  <option key={time} value={time}>
+                    {time}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="concern">Concern:</label>
+              <textarea
+                id="concern"
+                value={concern}
+                onChange={handleConcernChange}
+                placeholder="Enter your pet's health concern"
+                disabled={!consultationDate || !consultationTime}
+              ></textarea>
+            </div>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+            {successMessage && <div className="success-message">{successMessage}</div>}
+            <button type="submit" className="sched button" disabled={!consultationDate || !consultationTime}>
+              Schedule Consultation
+            </button>
+          </form>
+          
+        </div>
+
+        {/* Display the poweecha bot */}
+        <Chatbot/>
+      </div>
+      }
+    </>
   );
 };
 

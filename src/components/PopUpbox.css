@@ -1,0 +1,29 @@
+.popUpAlert {
+    display: flex;
+    align-items:center;
+    height: fit-content;
+    margin: 1rem;
+}
+
+.popUp-container  {
+    padding: 2rem;
+    margin: auto;
+    border-radius: 10px;
+    color: #836953;
+    font-size: 1.5rem;
+}
+
+.popUp-container img {
+    width: 100%;
+}
+
+.popUp-container .buttons {
+    margin: auto ;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.popUp-container button {
+    font-size: 1rem;
+}

@@ -31,8 +31,8 @@
 }
 
 .filter-collapse {
-    position: fixed;
-    padding: 5rem;
+    position: absolute;
+    padding: 5rem 5rem 0;
     top:0;
     left:0;
     background-color: #836953;
@@ -40,8 +40,8 @@
     color: #FFFFFF;
     z-index: 990;
     width: 20vw;
-    border-radius: 10px;
-    height: 100vh;
+    border-radius: 0 10px 10px 0;
+    min-height: 92vh;
 }
 
 .products-container aside li {
@@ -86,7 +86,7 @@
 
 .products-container .right {
     flex: 1;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .products-container form {
@@ -168,6 +168,7 @@
     cursor: pointer;
     border-radius: 10px;
     margin-right: 0.25rem;
+    border: 1px solid #836953;
 }
 
 .products-container .products-card li button:hover {
@@ -192,14 +193,51 @@
     width: 100%;
 }
 
+.alertPopup .popUpAlert .popUp-container .notLogged {
+    border-radius: 10px;
+}
+
+.notLogged {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    
+  }
+
+  .notLogged p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .notLogged img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .notLogged .buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  .notLogged .button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    background-color: #F8C8DC;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 @media (min-width: 1600px) {
     .products-container .products-card li.cards .productinfo-container {
-        height: 24rem;
-    }
-
-    .products-container .products-card ul {
-        display: grid;
-        grid-template-columns: repeat(6 , 1fr);
+        height: 20rem;
     }
 
     .cards button {
@@ -221,7 +259,7 @@
     @media (orientation:landscape) and (max-height:600px) {
         
         .filter-collapse {
-            position: fixed;
+            position: absolute;
             padding: 1rem 5rem;
             width: 100vw;
             border-radius: 0;

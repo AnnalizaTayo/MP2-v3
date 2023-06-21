@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { BsTrashFill } from 'react-icons/bs';
-import PawIcon from '../components/PawIcon';
 import Checkout from '../components/Checkout';
+import NotLogged from '../components/NotLoggedIn';
+
 
 const WishListPage = () => {
     const [wishListItems, setWishListItems] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [selectedItems, setSelectedItems] = useState([]);
     const [cart, setCart] = useState([]);    
     const [transaction, setTransaction] = useState([]);
+    const [isLoggedIn , setIsLoggedIn] = useState(false);
+    const [showSuccess , setShowSuccess] = useState(false);
     
     useEffect(() => {
         const userString = localStorage.getItem('user');
@@ -18,7 +20,7 @@ const WishListPage = () => {
             setCart(user.cart);
             setWishListItems(user.wishlist);
             setTransaction(user.transaction);
-            setLoading(false);
+            setIsLoggedIn(true);
         }
         fetch('https://6475abd1e607ba4797dc4d7a.mockapi.io/api/v1/products')
             .then(response => response.json())
@@ -232,6 +234,10 @@ const WishListPage = () => {
         updateTransactionItemsInStorage(updatedTransactionItems);
         updateWishListItemsInApi(updatedWishListItems);
         updateTransactionItemsInApi(updatedTransactionItems);
+        setShowSuccess(true);
+        setTimeout(() => {
+            setShowSuccess(false);
+        }, 2500);
     };
       
     const updateTransactionItemsInStorage = (updatedTransactionItems) => {
@@ -291,81 +297,93 @@ const WishListPage = () => {
     });
     });
 
-    if (loading) {
-        return <PawIcon />;
-    }
-
     return (
-        <div className="wishlist">
-            <h1>My Wish List</h1>
-            {wishListItems.length === 0 ? (
-                <p>Your wish list is empty.</p>
-            ) : (
-                <div className='listcontent'>
-                    <div className="columnLabel">
-                        <input type="checkbox" className="myCheckbox" checked={selectedItems.length === wishListItems.length} onChange={() => handleSelectAll()}/>
-                        <h4>Product</h4>
-                        <h4 className='unitPrice'>Unit Price</h4>
-                        <h4>Quantity</h4>
-                        <h4 className='totalprice'>Total Price</h4>
-                        <h4>Action</h4>
-                    </div>
-                    <ul className="productLists">
-                        {wishListItems.map(item => {
-                            const product = getProductById(item.id);
-                            return (
-                                <li key={item.id}  class="itemContainer">
-                                    <input type="checkbox" className='myCheckbox' checked={selectedItems.includes(item.id)} onChange={(event) => handleCheckboxChange(event, item.id)}/>
-                                    <div className='productinfo'>
-                                        <img src={product ? product.productimage : ''} alt={product ? product.productname : 'Unknown'} />
-                                        <div className='productName'>{product ? product.productname : 'Unknown'}</div>
-                                        <div className='productVariant'>{product ? product.variant : 'Unknown'}</div>
-                                    </div>
+        <>
+            {!isLoggedIn ? <NotLogged/> : 
+            <div className="wishlist content-minHeight-70vh">
+                <h1>My Wish List</h1>
+                {wishListItems.length === 0 ? (
+                    <p>Your wish list is empty.</p>
+                ) : (
+                    <div className='listcontent'>
+                        <div className="columnLabel">
+                            <input type="checkbox" className="myCheckbox" checked={selectedItems.length === wishListItems.length} onChange={() => handleSelectAll()}/>
+                            <h4>Product</h4>
+                            <h4 className='unitPrice'>Unit Price</h4>
+                            <h4>Quantity</h4>
+                            <h4 className='totalprice'>Total Price</h4>
+                            <h4>Action</h4>
+                        </div>
+                        <ul className="productLists">
+                            {wishListItems.map(item => {
+                                const product = getProductById(item.id);
+                                return (
+                                    <li key={item.id}  class="itemContainer">
+                                        <input type="checkbox" className='myCheckbox' checked={selectedItems.includes(item.id)} onChange={(event) => handleCheckboxChange(event, item.id)}/>
+                                        <div className='productinfo'>
+                                            <img src={product ? product.productimage : ''} alt={product ? product.productname : 'Unknown'} />
+                                            <div className='productName'>{product ? product.productname : 'Unknown'}</div>
+                                            <div className='productVariant'>{product ? product.variant : 'Unknown'}</div>
+                                        </div>
 
-                                    <div className='unitPrice'>{product ? `$${product.price}` : 'Unknown'}</div>
-                                    <div>
-                                        <button className='quantityButton' onClick={() => decrementQuantity(item.id)}>-</button>
-                                        <input
-                                            className="quantityNumber"
-                                            type="number"
-                                            min="1"
-                                            value={item.qty || 1}
-                                            onChange={(event) => handleQuantityChange(event, item.id)}
-                                        />
-                                        <button className='quantityButton' onClick={() => incrementQuantity(item.id)}>+</button>
-                                    </div>
-                                    <div className='totalprice'>
-                                        {product ? `$${(parseFloat(product.price) * item.qty).toFixed(2)}` : 'Unknown'}
-                                    </div>
-                                    <div>
-                                        <BsTrashFill onClick={() => handleDeleteSelectedItem(item.id)} />
-                                    </div>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                    <div className="footing">
-                        <div className="allSelectedButtons">
-                            <input type="checkbox" className='myCheckbox bottomSelectAll' checked={selectedItems.length === wishListItems.length} onChange={() => handleSelectAll()} />
-                            <div>
-                                <button className="labelButton myCheckbox" onClick={() => handleSelectAll()}>
-                                    Select All
-                                </button>
-                                <button className="labelButton" onClick={handleDelete}>Delete</button>
-                                <button className="labelButton cartButton" onClick={moveToCart}>Move to Cart</button> 
+                                        <div className='unitPrice'>{product ? `$${product.price}` : 'Unknown'}</div>
+                                        <div>
+                                            <button className='quantityButton' onClick={() => decrementQuantity(item.id)}>-</button>
+                                            <input
+                                                className="quantityNumber"
+                                                type="number"
+                                                min="1"
+                                                value={item.qty || 1}
+                                                onChange={(event) => handleQuantityChange(event, item.id)}
+                                            />
+                                            <button className='quantityButton' onClick={() => incrementQuantity(item.id)}>+</button>
+                                        </div>
+                                        <div className='totalprice'>
+                                            {product ? `$${(parseFloat(product.price) * item.qty).toFixed(2)}` : 'Unknown'}
+                                        </div>
+                                        <div>
+                                            <BsTrashFill onClick={() => handleDeleteSelectedItem(item.id)} />
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                        <div className="footing">
+                            <div className="allSelectedButtons">
+                                <input type="checkbox" className='myCheckbox bottomSelectAll' checked={selectedItems.length === wishListItems.length} onChange={() => handleSelectAll()} />
+                                <div>
+                                    <button className="labelButton myCheckbox" onClick={() => handleSelectAll()}>
+                                        Select All
+                                    </button>
+                                    <button className="labelButton" onClick={handleDelete}>Delete</button>
+                                    <button className="labelButton cartButton" onClick={moveToCart}>Move to Cart</button> 
+                                </div>
+                            </div>
+                            <div  className='totalItems'>
+                                <h4>Total({selectedItems.length} item{selectedItems.length === 1 ? '' : 's'}):</h4>
+                                <h4>${getTotalAmount()}</h4>
+                                <div className='checkout'>
+                                    <Checkout handleCheckout={handleCheckout}/>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                )}
+            </div>
+            }
+            {showSuccess ? (
+                <div className='alertPopup'>
+                    <div className='popUpAlert'>
+                        <div className='popUp-container'>
+                            <div className='notLogged'>
+                                <p>Meow! Thank you for purchasing. Nyang!</p>
+                                <img src='https://media.tenor.com/iRn9h2dTMhcAAAAi/mochi-mochi-peach-cat-cat.gif' alt='Successful Purchase'/>
                             </div>
                         </div>
-                        <div  className='totalItems'>
-                            <h4>Total({selectedItems.length} item{selectedItems.length === 1 ? '' : 's'}):</h4>
-                            <h4>${getTotalAmount()}</h4>
-                            <div className='checkout'>
-                                <Checkout handleCheckout={handleCheckout}/>
-                            </div>
-                        </div>
-                  </div>
+                    </div>
                 </div>
-            )}
-        </div>
+            ) : ''}
+        </>
     );
 };
 

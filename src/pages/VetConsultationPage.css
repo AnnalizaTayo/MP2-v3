@@ -267,6 +267,16 @@ width: 100%;
   border: 1px solid #836953;
 }
 
+.cancel-message {
+  color: #4caf50;
+  background-color: #FFFFFF;
+  margin: auto;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #f8c8dc;
+}
+
 
 /* Responsive styles */
 

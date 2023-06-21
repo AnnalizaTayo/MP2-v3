@@ -4,6 +4,7 @@ import './Checkout.css';
 const Checkout = ({ handleCheckout }) => {
   const [showCheckout, setShowCheckout] = useState(false);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+  const [isErrorMessage, setErrorMessage] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState('');
   
   const handleMonthChange = (e) => {
@@ -13,7 +14,11 @@ const Checkout = ({ handleCheckout }) => {
     if (selectedDate < currentDate) {
       // If selected month is in the past, clear the input
       setSelectedMonth('');
-      alert('Please select a future month');
+      setErrorMessage("Please select a future date.");
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 2000);
+      return;
     } else {
       setSelectedMonth(e.target.value);
     }
@@ -38,6 +43,7 @@ const Checkout = ({ handleCheckout }) => {
     const form = document.getElementById('checkoutForm');
     const inputs = form.getElementsByTagName('input');
     let isValid = true;
+
     for (let i = 0; i < inputs.length; i++) {
       if (inputs[i].hasAttribute('required') && (!inputs[i].value.trim() || inputs[i].value.includes(' '))) {
         isValid = false;
@@ -47,14 +53,18 @@ const Checkout = ({ handleCheckout }) => {
         isValid = true;
       }
     }
-    if (isValid) {
-      alert('Thank you for purchasing!');
-      handleCheckout();
-      setShowCheckout(!showCheckout);
-    } else {
-      alert('Please make sure to enter a valid input.');
+    if (selectedMonth === '') {
+      setErrorMessage('Please enter a valid input.');
       return;
     }
+    if (isValid) {
+      setShowCheckout(!showCheckout);
+      handleCheckout();
+    } else {
+      setErrorMessage('Please make sure to enter a valid input.');
+      return;
+    }
+    
   }
 
 
@@ -101,6 +111,7 @@ const Checkout = ({ handleCheckout }) => {
                     </fieldset>
                     </div>
                 </div>
+                {isErrorMessage && <div className="error-message">{isErrorMessage}</div>}
                 <button onClick={toggleMyOrder}>Close</button>
                 <button type="submit" onClick={handleOrderNowClick}>
                     Order Now

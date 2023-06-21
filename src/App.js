@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import './App.css';
 import { FaHome, FaArrowUp } from 'react-icons/fa';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PawIcon from './components/PawIcon';
-//import Search from './components/search';
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -21,14 +20,10 @@ import NotFound from './components/404';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showButton, setShowButton] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const userString = localStorage.getItem('user');
-    setIsLoggedIn(!!userString);
     setIsLoading(false);
   }, []);
 
@@ -49,10 +44,6 @@ function App() {
     };
   }, []);
 
-  const handleNavigateToLogin = () => {
-    alert('You are not logged in. Please login to your account.');
-    navigate('/login');
-  };
 
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -67,33 +58,15 @@ function App() {
           <PawIcon />
           <Header />
           <Routes>
-            {
-            isLoggedIn ? (
-              <>
-                <Route path="/consultation" element={<VetConsultationPage />} />
-                <Route path="/wishlist" element={<WishListPage />} />
-                <Route path="/cart" element={<CartPage />} />
-              </>
-            ) : (
-              <>
-                <Route
-                  path="/consultation"
-                  element={<ProtectedPage onNavigate={handleNavigateToLogin} />}
-                />
-                <Route
-                  path="/wishlist"
-                  element={<ProtectedPage onNavigate={handleNavigateToLogin} />}
-                />
-                <Route
-                  path="/cart"
-                  element={<ProtectedPage onNavigate={handleNavigateToLogin} />}
-                />
-              </>
-            )}
+            <Route path="/consultation" element={<VetConsultationPage />} />
+            <Route path="/wishlist" element={<WishListPage />} />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<ProfilePage />} />
+
             <Route path="/products/pettype/:pettype/category/:category/search/:search" element={<ProductsPage />}/>
             <Route path="/products/pettype/:pettype/category/:category" element={<ProductsPage />}/>
             <Route path="/products/pettype/:pettype" element={<ProductsPage />}/>
@@ -101,15 +74,6 @@ function App() {
             <Route path="/products/category/:category" element={<ProductsPage />}/>
             <Route path="/products/search/:search" element={<ProductsPage />}/>
             <Route exact path="/products" element={<ProductsPage />} />
-            {/*//pettype,category,search*/}
-            {isLoggedIn ? (
-              <Route path="/profile" element={<ProfilePage />} />
-            ) : (
-              <Route
-                path="/profile"
-                element={<ProtectedPage onNavigate={handleNavigateToLogin} />}
-              />
-            )}
             <Route path="/admin" element={<ProductManagement />} />
             {/* <Route path="/search" element={<Search />} /> */}
             <Route path="*" element={<NotFound/>} />
@@ -129,14 +93,6 @@ function App() {
       )}
     </div>
   );
-}
-
-function ProtectedPage({ onNavigate }) {
-  useEffect(() => {
-    onNavigate();
-  }, [onNavigate]);
-
-  return null;
 }
 
 export default App;

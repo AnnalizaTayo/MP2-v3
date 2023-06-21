@@ -18,10 +18,6 @@ const ProductList = () => {
     const { search } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 8;
-    const [isAlertShow , setAlertShow] = useState (false);
-    const [isAlertNotLogged , setAlertNotLogged] = useState (false);
-    const [isAlertAddCart , setAlertAddCart] = useState (false);
-    const [isAlertWishList , setAlertWishList] = useState (false);
 
     const [filters, setFilters] = useState({
         productcategory: '|All Products',
@@ -415,15 +411,9 @@ const ProductList = () => {
                 const updatedUser = { ...user, cart: [...user.cart, newProduct] };
                 updateUser(updatedUser);
             }
-            setAlertShow(true);
-            setAlertAddCart(true);
-            setTimeout(() => {
-                setAlertShow(false);
-                setAlertAddCart(false);
-            } , 2400);
+            alert("Product has been added to the cart");
         } else {
-            setAlertShow(true);
-            setAlertNotLogged(true);
+            alert("Please login to your account to add a product in the cart");
         }
     };
 
@@ -444,15 +434,9 @@ const ProductList = () => {
                 const updatedUser = { ...user, wishlist: [...user.wishlist, newProduct] };
                 updateUser(updatedUser);
             }
-            setAlertShow(true);
-            setAlertWishList(true);
-            setTimeout(() => {
-                setAlertShow(false);
-                setAlertWishList(false);
-            }, 2400);
+            alert("Product has been added to the wishlist");
         } else {
-            setAlertShow(true);
-            setAlertNotLogged(true);
+            alert("Please login to your account to add a product in the cart");
         }
     };
 
@@ -749,15 +733,6 @@ const ProductList = () => {
         return l.slice(sI,eI);
     };
 
-    const cancel = () => {
-        setAlertShow(!isAlertShow);
-    };
-
-    const toggleOff = () => {
-        setAlertShow(!isAlertShow);
-        navigate('/login');
-    }
-
     const Pagination = () => {
         const totalPages = Math.ceil((filtered ? filtered : results).length / productsPerPage);
       
@@ -812,7 +787,7 @@ const ProductList = () => {
             
           </div>
         );
-    };
+      };
     return (
         <div className='products-container'>
             <div className='productspage content-minHeight'>
@@ -1055,37 +1030,6 @@ const ProductList = () => {
                 </div>
             </div>
             <Pagination className='bottom'/>
-            {isAlertShow ? (
-                <div className='alertPopup'>
-                    <div className='popUpAlert'>
-                        <div className='popUp-container'>
-                            {isAlertNotLogged ? ( 
-                            <div className='notLogged'>
-                                <p>Meow! Please login to your account to continue accessing this page.</p>
-                                <img src='https://media.tenor.com/hXa7oZpXsvsAAAAC/cute-confused.gif' alt='not logged'/>
-                                <div className='buttons'>
-                                    <button className='button' onClick={toggleOff}>Login</button>
-                                    <button className='button' onClick={cancel}>cancel</button>
-                                </div>
-                            </div>
-                            ) : ''}
-                            {isAlertAddCart ? ( 
-                            <div className='notLogged'>
-                                <p>Meow! Product has been added to cart. Nyang!</p>
-                                <img src='https://media.tenor.com/uneqmK1ERo8AAAAi/tkthao219-bubududu.gif' alt='added to cart'/>
-                            </div>
-                            ) : ''}
-                            {isAlertWishList ? ( 
-                            <div className='notLogged'>
-                                <p>Meow! Product has been added to the Wish List. Nyang!</p>
-                                <img src='https://media.tenor.com/KzItLFDE3OwAAAAC/cat.gif' alt='added to wish list'/>
-                            </div>
-                            ) : ''}
-                            
-                        </div>
-                    </div>
-                </div>
-            ) : ''}
 {/*
                         <div className="pagination-buttons">
         {Array.from({ length: Math.ceil((filtered ? filtered : results).length / productsPerPage) }, (_, i) => (
