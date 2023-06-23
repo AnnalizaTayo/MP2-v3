@@ -109,7 +109,7 @@ const Footer = () => {
           </div>
           <h2>Contact us</h2>
           <div className='footer-contactus'>
-              <a href='tel:+6386509201'><BsFillTelephoneFill className='footer-icon'/> 0999-999-9999</a>
+              <a href='tel:+6386509201'><BsFillTelephoneFill className='footer-icon'/> +6386509201</a>
               <a href='mailto:paworder@gmail.com?subject=Your%20Subject'><MdEmail className='footer-icon'/> support@paworder.com</a>
           </div>
         </div>      
