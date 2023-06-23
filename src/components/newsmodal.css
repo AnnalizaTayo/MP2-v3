@@ -109,7 +109,9 @@
     margin-top: 1.5rem;
 }
 
-
+.email-warning-modal {
+    color: #8a8016;
+}
 
 @media (max-width: 767px) {
     #popup1 .popup {
