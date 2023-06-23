@@ -84,8 +84,11 @@ const SignUpPage = () => {
     if (trimmedFormData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match');
       return;
-    } else if ((formData.password < 6 || formData.password > 16) && (formData.confirmPassword < 6 || formData.confirmPassword > 16)){
-      setErrorMessage('Password must be between 6 and 16 characters.');
+    }
+    
+    // Check password length
+    if (trimmedFormData.password.length < 6) {
+      setErrorMessage('Password must be at least 6 characters long and must contain a combination of numbers, letters or special characters.');
       return;
     }
   
