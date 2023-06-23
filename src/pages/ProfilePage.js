@@ -211,8 +211,7 @@ const ProfilePage = () => {
                             (user.password.length < 6 ||
                               user.password.length > 16) && (
                               <p className="password-error warning-message">
-                                Password must be between 6 and 16 characters
-                                long.
+                                Password must be at least 6 characters long and must contain a combination of numbers, letters or special characters.
                               </p>
                             )}
                         </div>
