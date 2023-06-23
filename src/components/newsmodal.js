@@ -118,7 +118,7 @@ const NewsModal = () => {
                         </div>
                       )}
                       {showEmailWarning && (
-                        <div className="email-warning">
+                        <div className="email-warning-modal">
                           <p>This email is already registered for the newsletter.</p>
                         </div>
                       )}
