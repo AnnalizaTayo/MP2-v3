@@ -18,7 +18,6 @@ const NotLogged = () => {
     }
 
 
-
     return (
         <div>
             {(show ?

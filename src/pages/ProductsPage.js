@@ -373,7 +373,7 @@ const ProductList = () => {
 
 
     const fetchProducts = (userInput) => {
-        let url = 'https://64803e10f061e6ec4d48e135.mockapi.io/api/v1/products';
+        let url = 'https://6475abd1e607ba4797dc4d7a.mockapi.io/api/v1/products';
         fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -922,7 +922,7 @@ const ProductList = () => {
                                                 Bedding
                                             </label>
                                         </li>
-                                        <li>{/* Leash and Collar */}
+                                        <li className='hide'>{/* Leash and Collar */}
                                             <label>
                                                 <input type="checkbox" checked={isLeashesAndCollarFiltered} onChange={(e)=>{
                                                     setIsLeashesAndCollarFiltered(!isLeashesAndCollarFiltered);
