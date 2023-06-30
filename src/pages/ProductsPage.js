@@ -158,6 +158,59 @@ const ProductList = () => {
     useEffect(() => {
         if( isFoodFiltered||
             isTreatsFiltered||
+            isSupplementsFiltered){
+            setIsFoodAndNutritionFiltered(true);
+        }
+
+        if( isToysFiltered) {
+            setIsToysAndEnrichmentFiltered(true);
+        }
+
+        if( isGroomingToolsFiltered||
+            isBeddingFiltered||
+            isLeashesAndCollarFiltered||
+            isAccessoriesFiltered||
+            isAquariumFiltered){
+            setIsCareAndWellBeingFiltered(true);
+        }
+        
+    }, [isFoodFiltered,
+        isTreatsFiltered,
+        isSupplementsFiltered,
+        isToysFiltered,
+        isGroomingToolsFiltered,
+        isBeddingFiltered,
+        isLeashesAndCollarFiltered,
+        isAccessoriesFiltered,
+        isAquariumFiltered]);
+        
+    useEffect(() => {
+        if(!isFoodAndNutritionFiltered) {
+            setIsFoodFiltered(false);
+            setIsTreatsFiltered(false);
+            setIsSupplementsFiltered(false);
+        }
+            
+
+        if( !isToysAndEnrichmentFiltered) {
+            setIsToysFiltered(false);
+        }
+
+        if( !isCareAndWellBeingFiltered) {
+            setIsGroomingToolsFiltered(false);
+            setIsBeddingFiltered(false);
+            setIsLeashesAndCollarFiltered(false);
+            setIsAccessoriesFiltered(false);
+            setIsAquariumFiltered(false);
+        }
+        
+    }, [isFoodAndNutritionFiltered,
+        isToysAndEnrichmentFiltered,
+        isCareAndWellBeingFiltered]);
+        
+    useEffect(() => {
+        if( isFoodFiltered||
+            isTreatsFiltered||
             isSupplementsFiltered||
             isToysFiltered||
             isGroomingToolsFiltered||
