@@ -109,12 +109,12 @@ const SignUpPage = () => {
         // Remove the confirmPassword field
         delete trimmedFormData.confirmPassword;
   
-        const petPictureUrl = 'https://scontent.fmnl4-4.fna.fbcdn.net/v/t39.30808-6/353831107_2959207134212731_742275240005757005_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=rHyHcKBTcocAX9Rkdt3&_nc_ht=scontent.fmnl4-4.fna&oh=00_AfCpOMtvaLKpl8wTS47gOV2BktA0eBQ5uPa1KpXdtGY2zQ&oe=6497356B';
+        const petPictureUrl = 'https://drive.google.com/uc?id=1Gh89x3GdNfd7zjf22NHtDhr8KnTRLNTo';
   
         const newUser = {
           ...trimmedFormData,
           profilePicture:
-            'https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/352554740_2959207507546027_6149777498805105775_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_ohc=EN8-2KI-wygAX_5ZlCd&_nc_ht=scontent.fmnl4-1.fna&oh=00_AfDGDk0bvBEYuuk5j8IQYyBtU45iCxAjleqO1dzKSgUmFg&oe=64977377',
+            'https://drive.google.com/uc?id=1Ump7g-zoD46W9CRP_x2mrodu3EPNEulS',
           petPicture: petPictureUrl,
           id: (data.length + 1).toString(),
         };
